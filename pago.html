@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago | Elegance Boutique</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .payment-container {
+            padding: 8rem 5% 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .payment-section {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .payment-method {
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method:hover,
+        .payment-method.selected {
+            border-color: var(--accent-color);
+            background-color: var(--background-color);
+        }
+
+        .payment-method i {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .payment-method h3 {
+            margin: 0.5rem 0;
+            color: var(--text-color);
+        }
+
+        .payment-details {
+            margin-top: 2rem;
+        }
+
+        .payment-details input {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--primary-color);
+            border-radius: 5px;
+        }
+
+        .order-summary {
+            background-color: var(--background-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--primary-color);
+        }
+
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--primary-color);
+        }
+
+        .generate-invoice {
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 2rem;
+            width: 100%;
+        }
+
+        .generate-invoice:hover {
+            background-color: var(--secondary-color);
+        }
+
+        #invoice {
+            display: none;
+            margin-top: 2rem;
+            padding: 2rem;
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        #invoice.visible {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Elegance Boutique</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="payment-container">
+        <h1>Proceso de Pago</h1>
+
+        <div class="payment-section">
+            <h2>Método de Pago</h2>
+            <div class="payment-methods">
+                <div class="payment-method" data-method="credit">
+                    <i class="fas fa-credit-card"></i>
+                    <h3>Tarjeta de Crédito</h3>
+                    <p>Pago seguro con tarjeta</p>
+                </div>
+                <div class="payment-method" data-method="debit">
+                    <i class="fas fa-credit-card"></i>
+                    <h3>Tarjeta de Débito</h3>
+                    <p>Pago directo desde tu cuenta</p>
+                </div>
+                <div class="payment-method" data-method="transfer">
+                    <i class="fas fa-university"></i>
+                    <h3>Transferencia Bancaria</h3>
+                    <p>Pago mediante transferencia</p>
+                </div>
+            </div>
+
+            <div class="payment-details">
+                <input type="text" placeholder="Número de Tarjeta" class="card-input">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <input type="text" placeholder="MM/AA" class="card-input">
+                    <input type="text" placeholder="CVV" class="card-input">
+                </div>
+                <input type="text" placeholder="Nombre en la Tarjeta" class="card-input">
+            </div>
+        </div>
+
+        <div class="payment-section">
+            <h2>Resumen del Pedido</h2>
+            <div class="order-summary" id="order-summary">
+                <!-- Los items se añadirán dinámicamente -->
+            </div>
+            <button class="generate-invoice" onclick="generateInvoice()">Generar Factura</button>
+        </div>
+
+        <div id="invoice">
+            <h2>Factura</h2>
+            <div id="invoice-content">
+                <!-- El contenido de la factura se generará dinámicamente -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Elegance Boutique</h3>
+                <p>Tu destino para la moda contemporánea y elegante.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Síguenos</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Elegance Boutique. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Obtener los productos del carrito desde localStorage
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        // Mostrar los productos en el resumen del pedido
+        function displayOrderSummary() {
+            const orderSummary = document.getElementById('order-summary');
+            let subtotal = 0;
+            
+            cart.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'order-item';
+                itemElement.innerHTML = `
+                    <span>${item.name}</span>
+                    <span>$${item.price.toFixed(2)}</span>
+                `;
+                orderSummary.appendChild(itemElement);
+                subtotal += item.price;
+            });
+
+            const itbis = subtotal * 0.18; // 18% ITBIS
+            const total = subtotal + itbis;
+
+            const totalElement = document.createElement('div');
+            totalElement.className = 'order-total';
+            totalElement.innerHTML = `
+                <div>
+                    <div>Subtotal: $${subtotal.toFixed(2)}</div>
+                    <div>ITBIS (18%): $${itbis.toFixed(2)}</div>
+                    <div>Total: $${total.toFixed(2)}</div>
+                </div>
+            `;
+            orderSummary.appendChild(totalElement);
+        }
+
+        // Generar la factura
+        function generateInvoice() {
+            const invoice = document.getElementById('invoice');
+            const invoiceContent = document.getElementById('invoice-content');
+            const date = new Date();
+            
+            let subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+            let itbis = subtotal * 0.18;
+            let total = subtotal + itbis;
+
+            invoiceContent.innerHTML = `
+                <div style="margin-bottom: 2rem;">
+                    <h3>Elegance Boutique</h3>
+                    <p>Factura #${Math.floor(Math.random() * 10000)}</p>
+                    <p>Fecha: ${date.toLocaleDateString()}</p>
+                </div>
+                <div style="margin-bottom: 2rem;">
+                    <h4>Productos:</h4>
+                    ${cart.map(item => `
+                        <div style="display: flex; justify-content: space-between; margin: 0.5rem 0;">
+                            <span>${item.name}</span>
+                            <span>$${item.price.toFixed(2)}</span>
+                        </div>
+                    `).join('')}
+                </div>
+                <div style="border-top: 2px solid var(--primary-color); padding-top: 1rem;">
+                    <div style="display: flex; justify-content: space-between; margin: 0.5rem 0;">
+                        <span>Subtotal:</span>
+                        <span>$${subtotal.toFixed(2)}</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin: 0.5rem 0;">
+                        <span>ITBIS (18%):</span>
+                        <span>$${itbis.toFixed(2)}</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin: 0.5rem 0; font-weight: bold;">
+                        <span>Total:</span>
+                        <span>$${total.toFixed(2)}</span>
+                    </div>
+                </div>
+            `;
+
+            invoice.classList.add('visible');
+        }
+
+        // Event listeners para los métodos de pago
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', () => {
+                document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+                method.classList.add('selected');
+            });
+        });
+
+        // Mostrar el resumen del pedido al cargar la página
+        displayOrderSummary();
+    </script>
+</body>
+</html> 

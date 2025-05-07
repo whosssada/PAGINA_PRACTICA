@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos | Elegance Boutique</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .products-container {
+            padding: 8rem 5% 5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .filter-group select {
+            padding: 0.5rem;
+            border: 1px solid var(--primary-color);
+            border-radius: 5px;
+            background-color: var(--white);
+            color: var(--text-color);
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .search-bar input {
+            padding: 0.5rem;
+            border: 1px solid var(--primary-color);
+            border-radius: 5px;
+            width: 200px;
+        }
+
+        .search-bar button {
+            padding: 0.5rem 1rem;
+            background-color: var(--primary-color);
+            border: none;
+            border-radius: 5px;
+            color: var(--white);
+            cursor: pointer;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            position: relative;
+        }
+
+        .product-card .wishlist {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .product-card .wishlist:hover {
+            background-color: var(--accent-color);
+            color: var(--white);
+        }
+
+        .product-card .size-options {
+            display: flex;
+            gap: 0.5rem;
+            padding: 1rem;
+        }
+
+        .product-card .size-options button {
+            padding: 0.3rem 0.8rem;
+            border: 1px solid var(--primary-color);
+            background: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .product-card .size-options button:hover,
+        .product-card .size-options button.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .size-selector {
+            margin-bottom: 1rem;
+        }
+
+        .size-selector label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .size-selector select {
+            padding: 0.5rem;
+            border: 1px solid var(--primary-color);
+            border-radius: 5px;
+            background-color: var(--white);
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Elegance Boutique</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="productos.html" class="active">Productos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="products-container">
+        <h1>Nuestra Colección</h1>
+        
+        <div class="filters">
+            <div class="filter-group">
+                <label for="category">Categoría:</label>
+                <select id="category">
+                    <option value="all">Todas</option>
+                    <option value="women">Mujer</option>
+                    <option value="men">Hombre</option>
+                    <option value="accessories">Accesorios</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="sort">Ordenar por:</label>
+                <select id="sort">
+                    <option value="newest">Más recientes</option>
+                    <option value="price-low">Precio: Menor a Mayor</option>
+                    <option value="price-high">Precio: Mayor a Menor</option>
+                </select>
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar productos...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+
+        <div class="products-grid">
+            <!-- Producto 1 -->
+            <div class="product-card">
+                <button class="wishlist"><i class="far fa-heart"></i></button>
+                <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Vestido Floral">
+                <h3>Vestido Floral</h3>
+                <p class="price">$89.99</p>
+                <div class="size-options">
+                    <button>S</button>
+                    <button class="active">M</button>
+                    <button>L</button>
+                    <button>XL</button>
+                </div>
+                <button class="add-to-cart">Añadir al Carrito</button>
+            </div>
+
+            <!-- Producto 2 -->
+            <div class="product-card">
+                <button class="wishlist"><i class="far fa-heart"></i></button>
+                <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Blazer Elegante">
+                <h3>Blazer Elegante</h3>
+                <p class="price">$129.99</p>
+                <div class="size-options">
+                    <button>S</button>
+                    <button class="active">M</button>
+                    <button>L</button>
+                    <button>XL</button>
+                </div>
+                <button class="add-to-cart">Añadir al Carrito</button>
+            </div>
+
+            <!-- Producto 3 -->
+            <div class="product-card">
+                <button class="wishlist"><i class="far fa-heart"></i></button>
+                <img src="https://images.unsplash.com/photo-1603252109303-2751441dd157?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Camisa Casual">
+                <h3>Camisa Casual</h3>
+                <p class="price">$59.99</p>
+                <div class="size-options">
+                    <button>S</button>
+                    <button class="active">M</button>
+                    <button>L</button>
+                    <button>XL</button>
+                </div>
+                <button class="add-to-cart">Añadir al Carrito</button>
+            </div>
+
+            <!-- Producto 4 -->
+            <div class="product-card">
+                <button class="wishlist"><i class="far fa-heart"></i></button>
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Bolso Elegante">
+                <h3>Bolso Elegante</h3>
+                <p class="price">$79.99</p>
+                <div class="size-options">
+                    <button>Único</button>
+                </div>
+                <button class="add-to-cart">Añadir al Carrito</button>
+            </div>
+
+            <!-- Producto 5 -->
+            <div class="product-card">
+                <button class="wishlist"><i class="far fa-heart"></i></button>
+                <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Traje Formal">
+                <h3>Traje Formal</h3>
+                <p class="price">$199.99</p>
+                <div class="size-options">
+                    <button>S</button>
+                    <button class="active">M</button>
+                    <button>L</button>
+                    <button>XL</button>
+                </div>
+                <button class="add-to-cart">Añadir al Carrito</button>
+            </div>
+
+            <!-- Producto 6 -->
+            <div class="product-card">
+                <button class="wishlist"><i class="far fa-heart"></i></button>
+                <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Zapatos de Cuero">
+                <h3>Zapatos de Cuero</h3>
+                <p class="price">$149.99</p>
+                <div class="size-options">
+                    <button>38</button>
+                    <button>39</button>
+                    <button class="active">40</button>
+                    <button>41</button>
+                    <button>42</button>
+                </div>
+                <button class="add-to-cart">Añadir al Carrito</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Elegance Boutique</h3>
+                <p>Tu destino para la moda contemporánea y elegante.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Síguenos</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Elegance Boutique. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script src="cart.js"></script>
+</body>
+</html> 
